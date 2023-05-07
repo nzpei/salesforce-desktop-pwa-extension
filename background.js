@@ -7,8 +7,7 @@ chrome.webRequest.onAuthRequired.addListener((details) => {
 }, salesforceURLs, ["blocking"]);
 
 // Instead, we try to look for a 401 on a regular webRequest
-chrome.webRequest.onCompleted.addListener(async (details) => {
-    console.log('onCompleted: ' + details.url);
+chrome.webRequest.onCompleted.addListener(async (details) => {    
     // Detect if browser is going to the login page for some reason
     if (details.url.endsWith('.my.salesforce.com/') && details.statusCode == 200){
         console.log('Load of home screen');
@@ -79,7 +78,7 @@ function reAuthSalesforce(tab) {
 }
 
 function reloadSalesforceTab(tabId, currTabURL, frontdoorURL) {
-    let retURLParam = currTabURL == null ? "&retURL=/one/one.app" : "&retURL=" + currTabURL.substring(currTabURL.indexOf('force.com/') + 9);
+    let retURLParam = currTabURL == null || currTabURL.endsWith('force.com/') ? "&retURL=/one/one.app" : "&retURL=" + currTabURL.substring(currTabURL.indexOf('force.com/') + 9);
     console.log('Current Tab URL: ' + currTabURL);
     console.log('Refreshing session with ' + frontdoorURL + retURLParam);
     chrome.tabs.update(tabId, { url: frontdoorURL + retURLParam });
