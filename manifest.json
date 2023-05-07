@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "Salesforce Desktop PWA",
+  "description": "Allows Salesforce Lightning Experience to be Installed as a PWA on a desktop browser.",
+  "version": "1.0",
+  "icons": {
+    "16": "images/favicon-16x16.png",
+    "32": "images/favicon-32x32.png",
+    "128": "images/favicon.ico"
+  },
+  "action": {
+    "default_icon": {
+      "16": "images/favicon-16x16.png",
+      "32": "images/favicon-32x32.png",
+      "128": "images/favicon.ico"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "content.js"
+      ],
+      "matches": [
+        "https://*.lightning.force.com/*"
+      ]
+    }
+  ],
+  "permissions": [
+    "declarativeNetRequest",
+    "webRequest",
+    "webRequestAuthProvider",
+    "storage",
+    "identity"
+  ],
+  "host_permissions": [
+    "https://*.lightning.force.com/*",
+    "https://*.my.salesforce.com/*"
+  ],
+  "options_page": "options.html"
+}

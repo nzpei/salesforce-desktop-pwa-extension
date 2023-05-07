@@ -1,0 +1,93 @@
+[
+    {
+        "id": 1,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "transform": {
+                    "path": "/resource/pwa/manifest.json"
+                }
+            }
+        },
+        "condition": {
+            "urlFilter": "https://*.force.com/one/manifest.json",
+            "resourceTypes": [
+                "main_frame",
+                "stylesheet",
+                "sub_frame",
+                "script",
+                "image",
+                "font",
+                "object",
+                "xmlhttprequest",
+                "ping",
+                "csp_report",
+                "media",
+                "other"
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "responseHeaders": [
+                {
+                    "header": "Content-Security-Policy",
+                    "operation": "remove"
+                }
+            ]
+        },
+        "condition": {
+            "urlFilter": "https://*.lightning.force.com/lightning/n/*",
+            "resourceTypes": [
+                "main_frame",
+                "sub_frame"
+            ]
+        }
+    },
+    {
+        "id": 3,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {
+                    "header": "Referrer",
+                    "operation": "remove"
+                }
+            ]
+        },
+        "condition": {
+            "urlFilter": "https://*.force.com/*/manifest.json?*",
+            "resourceTypes": [
+                "main_frame",
+                "xmlhttprequest"
+            ]
+        }
+    },
+    {
+        "id": 5,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "responseHeaders": [
+                {
+                    "header": "Service-Worker-Allowed",
+                    "operation": "set",
+                    "value": "/"
+                }
+            ]
+        },
+        "condition": {
+            "urlFilter": "https://*.lightning.force.com/resource/pwa/serviceworker.js",
+            "resourceTypes": [
+                "main_frame",
+                "script",
+                "xmlhttprequest"
+            ]
+        }
+    }
+]

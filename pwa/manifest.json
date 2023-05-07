@@ -1,0 +1,46 @@
+{
+    "short_name": "Salesforce",
+    "name": "Salesforce Desktop (PWA)",
+    "icons": [
+        {
+            "src": "/resource/pwa/images/icons-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "/resource/pwa/images/icons-192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        }
+    ],
+    "id": "/",
+    "start_url": "/",
+    "background_color": "#FFFFFF",
+    "display": "minimal-ui",
+    "scope": "/",
+    "theme_color": "rgb(37 156 216)",
+    "description": "Launch Salesforce as a PWA",
+    "shortcuts": [
+        {
+            "name": "Home",
+            "short_name": "Home",
+            "url": "/",
+            "description": "Home",
+            "icons": [{ "src": "/resource/pwa/images/home.png", "sizes": "96x96"}]
+        },
+        {
+            "name": "Setup",
+            "short_name": "Setup",
+            "url": "/lightning/setup/SetupOneHome/home",
+            "description": "Setup",
+            "icons": [{ "src": "/resource/pwa/images/setup.png", "sizes": "96x96"}]
+        },
+        {
+            "name": "Settings",
+            "short_name": "Settings",
+            "url": "/lightning/settings/personal/PersonalInformation/home",
+            "description": "My Personal Information & Settings",
+            "icons": [{ "src": "/resource/pwa/images/settings.png", "sizes": "96x96"}]
+        }
+    ]
+}

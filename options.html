@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Salesforce Desktop PWA Extension Setup</title>
+    <script src="options.js"></script>
+</head>
+
+<body>
+    <h1>Salesforce Desktop PWA Setup</h1>
+
+    <h2>Connected App Details</h2>
+    <p>For security reasons, end users need to create their own Connected App as the consumer secret needs* to be
+        accessible to the extension.</p>
+    <p>Create a <a href="https://help.salesforce.com/s/articleView?id=sf.connected_app_create.htm&type=5"
+            target="_blank">connected app</a>
+        with:</p>
+    <ul>
+        <li>"Enable OAuth Settings" ticked</li>
+        <li>"Callback URL" set to: <span id="oauthCallbackURLDisplay"></span></li>
+        <li>"Selected OAuth Scopes" set to: "Manage user data via Web Browsers (web)" and "Perform requests at any time
+            (refresh_token, offline_access)"</li>
+    </ul>
+    <p>Please note that this Extension will store (in your local browser storage)
+        sufficient credentials to allow you to log into your Salesforce account perpetually,
+        unless access to the Connected App or the specific refresh tokens are revoked.
+    </p>
+    <small>* The OAuth 2.0 
+        <a href="https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_web_server_flow.htm&type=5">Web Server
+            Flow</a>
+        is used as Salesforce is now discouraging the use of the User-Agent Flow which wouldn't require a consumer secret.
+        See: <a href="https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_user_agent_flow.htm&type=5">https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_user_agent_flow.htm&type=5</a>
+    </small>   
+
+    <form id="optionsForm">
+        <label for="client_id">Consumer Key:</label><br>
+        <input type="text" id="client_id" name="client_id" size="100" placeholder="3MVGxxxxx...."><br>
+        <label for="client_secret">Consumer Secret:</label><br>
+        <input type="password" id="client_secret" name="client_secret" size="100" placeholder="ABCDEFG....""><br>        
+        <label for=" mydomain_url">My Domain URL:</label><br>
+        <input type="text" id="mydomain_url" name="mydomain_url" size="100"
+            placeholder="mycompany.my.salesforce.com"><br>
+        <input type="submit" id="submitBtn" value="Save Settings" />
+        <button id="authBtn">Authorize</button>
+        <button id="deleteTokensBtn">Delete Tokens</button>
+    </form>
+</body>
+
+</html>
